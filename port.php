@@ -15,12 +15,12 @@
 $ip = $_SERVER['REMOTE_ADDR'];
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$port = isset($_POST['port']) ? (int)$_POST['port'] : null;
+#$ip = isset($_POST['ip']) ? $_POST['ip'] : 'encrypted.google.com';
+$port = isset($_POST['port']) ? (int)$_POST['port'] : 443;
 $output = '';
 
 switch($action){
 	case 'exec':
-		#$ip = 'encrypted.google.com'; $port = 443;
 		if($ip && $port && $port <= 0xffff){
 			exec('openssl s_client -connect '.$ip.':'.$port, $output);
 			$output = join(PHP_EOL, $output);
@@ -44,12 +44,12 @@ switch($action){
 			<fieldset>
 				<div>
 					<label>Your IP:</label>
-					<input id="ip" type="text" value="<?php print $ip; ?>" readonly>
+					<input name="ip" type="text" value="<?php print $ip; ?>">
 				</div>
 
 				<div>
 					<label>Port:</label>
-					<input name="port" type="text" value="80">
+					<input name="port" type="text" value="<?php print $port; ?>">
 				</div>
 
 				<div>
