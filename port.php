@@ -15,7 +15,7 @@
 $ip = $_SERVER['REMOTE_ADDR'];
 
 $action = isset($_GET['action']) ? $_GET['action'] : null;
-$port = isset($_GET['port']) ? (int)$_GET['port'] : null;
+$port = isset($_POST['port']) ? (int)$_POST['port'] : null;
 $output = '';
 
 switch($action){
