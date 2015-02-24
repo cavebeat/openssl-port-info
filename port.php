@@ -23,11 +23,10 @@ switch($action){
 	case 'exec':
 		if($ip && $port && $port <= 0xffff){
 			exec('openssl s_client -connect '.$ip.':'.$port, $output, $code);
-			if($code){
+			$output = join(PHP_EOL, $output);
+			
+			if(!$output){
 				$output = 'Not working with '.$ip.':'.$port.'. Code: '.$code;
-			}
-			else{
-				$output = join(PHP_EOL, $output);
 			}
 		}
 		else{
